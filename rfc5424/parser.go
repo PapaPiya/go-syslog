@@ -3,7 +3,7 @@ package rfc5424
 import (
 	"sync"
 
-	syslog "github.com/influxdata/go-syslog/v3"
+	syslog "github.com/influxdata/go-syslog"
 )
 
 // parser represent a RFC5424 parser with mutex capabilities.
@@ -29,7 +29,7 @@ func (p *parser) HasBestEffort() bool {
 // Parse parses the input RFC5424 syslog message using its FSM.
 //
 // Best effort mode enables the partial parsing.
-func (p *parser) Parse(input []byte) (syslog.Message, error) {
+func (p *parser) Parse(input []byte) (syslog.LogParts, error) {
 	p.Lock()
 	defer p.Unlock()
 

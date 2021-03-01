@@ -3,7 +3,7 @@ package rfc3164
 import (
 	"time"
 
-	syslog "github.com/influxdata/go-syslog/v3"
+	syslog "github.com/influxdata/go-syslog"
 )
 
 // WithBestEffort enables the best effort mode.
@@ -63,6 +63,13 @@ func WithLocaleTimezone(loc *time.Location) syslog.MachineOption {
 func WithRFC3339() syslog.MachineOption {
 	return func(m syslog.Machine) syslog.Machine {
 		m.(*machine).WithRFC3339()
+		return m
+	}
+}
+
+func WithParseYear() syslog.MachineOption {
+	return func(m syslog.Machine) syslog.Machine {
+		m.(*machine).WithParseYear()
 		return m
 	}
 }

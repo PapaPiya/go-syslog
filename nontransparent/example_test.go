@@ -6,7 +6,7 @@ import (
 	"math/rand"
 	"strings"
 
-	"github.com/influxdata/go-syslog/v3"
+	"github.com/influxdata/go-syslog"
 	"time"
 )
 

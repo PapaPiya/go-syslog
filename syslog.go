@@ -6,8 +6,10 @@ import (
 	"io"
 	"time"
 
-	"github.com/influxdata/go-syslog/v3/common"
+	"github.com/influxdata/go-syslog/common"
 )
+
+type LogParts map[string]interface{}
 
 // BestEfforter is an interface that wraps the HasBestEffort method.
 type BestEfforter interface {
@@ -22,7 +24,7 @@ type MaxMessager interface {
 
 // Machine represent a FSM able to parse an entire syslog message and return it in an structured way.
 type Machine interface {
-	Parse(input []byte) (Message, error)
+	Parse(input []byte) (LogParts, error)
 	BestEfforter
 }
 

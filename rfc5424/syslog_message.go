@@ -3,8 +3,8 @@ package rfc5424
 import (
 	"time"
 
-	"github.com/influxdata/go-syslog/v3"
-	"github.com/influxdata/go-syslog/v3/common"
+	"github.com/influxdata/go-syslog"
+	"github.com/influxdata/go-syslog/common"
 )
 
 type syslogMessage struct {
@@ -28,31 +28,41 @@ func (sm *syslogMessage) minimal() bool {
 
 // export is meant to be called on minimally-valid messages
 // thus it presumes priority and version values exists and are correct
-func (sm *syslogMessage) export() *SyslogMessage {
-	out := &SyslogMessage{}
-	out.ComputeFromPriority(sm.priority)
-	out.Version = sm.version
+func (sm *syslogMessage) export() syslog.LogParts {
+	out := syslog.LogParts{
+		"priority":        sm.priority,
+		"facility":        uint8(sm.priority / 8),
+		"severity":        uint8(sm.priority % 8),
+		"version":         sm.version,
+		"hostname":        "",
+		"app_name":        "",
+		"message":         "",
+		"proc_id":         "",
+		"msg_id":          "",
+		"structured_data": "",
+		"timestamp":       time.Time{},
+	}
 
 	if sm.timestampSet {
-		out.Timestamp = &sm.timestamp
+		out["timestamp"] = sm.timestamp
 	}
 	if sm.hostname != "-" && sm.hostname != "" {
-		out.Hostname = &sm.hostname
+		out["hostname"] = sm.hostname
 	}
 	if sm.appname != "-" && sm.appname != "" {
-		out.Appname = &sm.appname
+		out["app_name"] = sm.appname
 	}
-	if sm.procID != "-" && sm.procID != "" {
-		out.ProcID = &sm.procID
+	if sm.procID != "" {
+		out["proc_id"] = sm.procID
 	}
 	if sm.msgID != "-" && sm.msgID != "" {
-		out.MsgID = &sm.msgID
+		out["msg_id"] = sm.msgID
 	}
 	if sm.hasElements {
-		out.StructuredData = &sm.structuredData
+		out["structured_data"] = sm.structuredData
 	}
 	if sm.message != "" {
-		out.Message = &sm.message
+		out["message"] = sm.message
 	}
 
 	return out

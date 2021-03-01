@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/influxdata/go-syslog/v3"
-	"github.com/influxdata/go-syslog/v3/common"
+	"github.com/influxdata/go-syslog"
+	"github.com/influxdata/go-syslog/common"
 )
 
 // ColumnPositionTemplate is the template used to communicate the column where errors occur.
@@ -110,7 +110,7 @@ func (m *machine) text() []byte {
 //
 // It can also partially parse input messages returning a partially valid structured representation
 // and the error that stopped the parsing.
-func (m *machine) Parse(input []byte) (syslog.Message, error) {
+func (m *machine) Parse(input []byte) (syslog.LogParts, error) {
 	m.data = input
 	m.p = 0
 	m.pb = 0
@@ -126,7 +126,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 	}
 
 	{
-		if (m.p) == (m.pe) {
+		if (m.p) >= (m.pe) {
 			goto _testEof
 		}
 		switch m.cs {
@@ -1702,7 +1702,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		m.cs = 0
 		goto _out
 	st2:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof2
 		}
 	stCase2:
@@ -1722,7 +1722,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st3
 	st3:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof3
 		}
 	stCase3:
@@ -1735,7 +1735,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr2
 	st4:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof4
 		}
 	stCase4:
@@ -1749,7 +1749,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st5
 	st5:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof5
 		}
 	stCase5:
@@ -1764,7 +1764,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr9
 	st6:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof6
 		}
 	stCase6:
@@ -1776,7 +1776,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st7:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof7
 		}
 	stCase7:
@@ -1800,7 +1800,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st8
 	st8:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof8
 		}
 	stCase8:
@@ -1814,7 +1814,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st9
 	st9:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof9
 		}
 	stCase9:
@@ -1831,7 +1831,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st10
 	st10:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof10
 		}
 	stCase10:
@@ -1845,7 +1845,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st11
 	st11:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof11
 		}
 	stCase11:
@@ -1862,7 +1862,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st12
 	st12:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof12
 		}
 	stCase12:
@@ -1876,7 +1876,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st13
 	st13:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof13
 		}
 	stCase13:
@@ -1893,7 +1893,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st14
 	st14:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof14
 		}
 	stCase14:
@@ -1907,7 +1907,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st15
 	st15:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof15
 		}
 	stCase15:
@@ -1924,7 +1924,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st16
 	st16:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof16
 		}
 	stCase16:
@@ -1936,7 +1936,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr33
 	st603:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof603
 		}
 	stCase603:
@@ -1945,7 +1945,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr9
 	st604:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof604
 		}
 	stCase604:
@@ -1965,7 +1965,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st605
 	st605:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof605
 		}
 	stCase605:
@@ -1976,7 +1976,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st17
 	st17:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof17
 		}
 	stCase17:
@@ -2002,7 +2002,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st18
 	st18:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof18
 		}
 	stCase18:
@@ -2042,7 +2042,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st19
 	st19:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof19
 		}
 	stCase19:
@@ -2070,7 +2070,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st20
 	st20:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof20
 		}
 	stCase20:
@@ -2090,7 +2090,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr42
 	st21:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof21
 		}
 	stCase21:
@@ -2110,7 +2110,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr42
 	st22:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof22
 		}
 	stCase22:
@@ -2130,7 +2130,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr42
 	st23:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof23
 		}
 	stCase23:
@@ -2150,7 +2150,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr42
 	st24:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof24
 		}
 	stCase24:
@@ -2170,7 +2170,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr42
 	st25:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof25
 		}
 	stCase25:
@@ -2190,7 +2190,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr42
 	st26:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof26
 		}
 	stCase26:
@@ -2210,7 +2210,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr42
 	st27:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof27
 		}
 	stCase27:
@@ -2230,7 +2230,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr42
 	st28:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof28
 		}
 	stCase28:
@@ -2250,7 +2250,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr42
 	st29:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof29
 		}
 	stCase29:
@@ -2270,7 +2270,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr42
 	st30:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof30
 		}
 	stCase30:
@@ -2290,7 +2290,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr42
 	st31:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof31
 		}
 	stCase31:
@@ -2310,7 +2310,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr42
 	st32:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof32
 		}
 	stCase32:
@@ -2330,7 +2330,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr42
 	st33:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof33
 		}
 	stCase33:
@@ -2350,7 +2350,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr42
 	st34:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof34
 		}
 	stCase34:
@@ -2370,7 +2370,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr42
 	st35:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof35
 		}
 	stCase35:
@@ -2390,7 +2390,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr42
 	st36:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof36
 		}
 	stCase36:
@@ -2410,7 +2410,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr42
 	st37:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof37
 		}
 	stCase37:
@@ -2430,7 +2430,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr42
 	st38:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof38
 		}
 	stCase38:
@@ -2450,7 +2450,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr42
 	st39:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof39
 		}
 	stCase39:
@@ -2470,7 +2470,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr42
 	st40:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof40
 		}
 	stCase40:
@@ -2490,7 +2490,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr42
 	st41:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof41
 		}
 	stCase41:
@@ -2510,7 +2510,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr42
 	st42:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof42
 		}
 	stCase42:
@@ -2530,7 +2530,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr42
 	st43:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof43
 		}
 	stCase43:
@@ -2550,7 +2550,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr42
 	st44:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof44
 		}
 	stCase44:
@@ -2570,7 +2570,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr42
 	st45:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof45
 		}
 	stCase45:
@@ -2590,7 +2590,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr42
 	st46:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof46
 		}
 	stCase46:
@@ -2610,7 +2610,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr42
 	st47:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof47
 		}
 	stCase47:
@@ -2630,7 +2630,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr42
 	st48:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof48
 		}
 	stCase48:
@@ -2650,7 +2650,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr42
 	st49:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof49
 		}
 	stCase49:
@@ -2670,7 +2670,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr42
 	st50:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof50
 		}
 	stCase50:
@@ -2690,7 +2690,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr42
 	st51:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof51
 		}
 	stCase51:
@@ -2704,7 +2704,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st52
 	st52:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof52
 		}
 	stCase52:
@@ -2713,7 +2713,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr42
 	st53:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof53
 		}
 	stCase53:
@@ -2762,7 +2762,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st54
 	st54:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof54
 		}
 	stCase54:
@@ -2840,7 +2840,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st55
 	st55:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof55
 		}
 	stCase55:
@@ -2870,7 +2870,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st606
 	st606:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof606
 		}
 	stCase606:
@@ -2894,7 +2894,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st56
 	st56:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof56
 		}
 	stCase56:
@@ -2911,7 +2911,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st57
 	st57:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof57
 		}
 	stCase57:
@@ -2925,7 +2925,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st58
 	st58:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof58
 		}
 	stCase58:
@@ -2939,7 +2939,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st59
 	st59:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof59
 		}
 	stCase59:
@@ -2953,7 +2953,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st60
 	st60:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof60
 		}
 	stCase60:
@@ -2967,7 +2967,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st61
 	st61:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof61
 		}
 	stCase61:
@@ -2981,7 +2981,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st62
 	st62:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof62
 		}
 	stCase62:
@@ -2995,7 +2995,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st63
 	st63:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof63
 		}
 	stCase63:
@@ -3004,7 +3004,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr42
 	st64:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof64
 		}
 	stCase64:
@@ -3026,7 +3026,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr38
 	st65:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof65
 		}
 	stCase65:
@@ -3048,7 +3048,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr38
 	st66:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof66
 		}
 	stCase66:
@@ -3070,7 +3070,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr38
 	st67:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof67
 		}
 	stCase67:
@@ -3092,7 +3092,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr38
 	st68:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof68
 		}
 	stCase68:
@@ -3114,7 +3114,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr38
 	st69:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof69
 		}
 	stCase69:
@@ -3136,7 +3136,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr38
 	st70:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof70
 		}
 	stCase70:
@@ -3158,7 +3158,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr38
 	st71:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof71
 		}
 	stCase71:
@@ -3180,7 +3180,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr38
 	st72:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof72
 		}
 	stCase72:
@@ -3202,7 +3202,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr38
 	st73:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof73
 		}
 	stCase73:
@@ -3224,7 +3224,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr38
 	st74:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof74
 		}
 	stCase74:
@@ -3246,7 +3246,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr38
 	st75:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof75
 		}
 	stCase75:
@@ -3268,7 +3268,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr38
 	st76:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof76
 		}
 	stCase76:
@@ -3290,7 +3290,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr38
 	st77:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof77
 		}
 	stCase77:
@@ -3312,7 +3312,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr38
 	st78:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof78
 		}
 	stCase78:
@@ -3334,7 +3334,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr38
 	st79:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof79
 		}
 	stCase79:
@@ -3356,7 +3356,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr38
 	st80:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof80
 		}
 	stCase80:
@@ -3378,7 +3378,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr38
 	st81:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof81
 		}
 	stCase81:
@@ -3400,7 +3400,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr38
 	st82:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof82
 		}
 	stCase82:
@@ -3422,7 +3422,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr38
 	st83:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof83
 		}
 	stCase83:
@@ -3444,7 +3444,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr38
 	st84:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof84
 		}
 	stCase84:
@@ -3466,7 +3466,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr38
 	st85:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof85
 		}
 	stCase85:
@@ -3488,7 +3488,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr38
 	st86:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof86
 		}
 	stCase86:
@@ -3510,7 +3510,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr38
 	st87:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof87
 		}
 	stCase87:
@@ -3532,7 +3532,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr38
 	st88:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof88
 		}
 	stCase88:
@@ -3554,7 +3554,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr38
 	st89:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof89
 		}
 	stCase89:
@@ -3576,7 +3576,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr38
 	st90:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof90
 		}
 	stCase90:
@@ -3598,7 +3598,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr38
 	st91:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof91
 		}
 	stCase91:
@@ -3620,7 +3620,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr38
 	st92:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof92
 		}
 	stCase92:
@@ -3642,7 +3642,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr38
 	st93:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof93
 		}
 	stCase93:
@@ -3664,7 +3664,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr38
 	st94:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof94
 		}
 	stCase94:
@@ -3676,7 +3676,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr38
 	st95:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof95
 		}
 	stCase95:
@@ -3688,7 +3688,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr30
 	st96:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof96
 		}
 	stCase96:
@@ -3700,7 +3700,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr30
 	st97:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof97
 		}
 	stCase97:
@@ -3712,7 +3712,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr30
 	st98:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof98
 		}
 	stCase98:
@@ -3724,7 +3724,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr30
 	st99:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof99
 		}
 	stCase99:
@@ -3736,7 +3736,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr30
 	st100:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof100
 		}
 	stCase100:
@@ -3748,7 +3748,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr30
 	st101:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof101
 		}
 	stCase101:
@@ -3760,7 +3760,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr30
 	st102:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof102
 		}
 	stCase102:
@@ -3772,7 +3772,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr30
 	st103:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof103
 		}
 	stCase103:
@@ -3784,7 +3784,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr30
 	st104:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof104
 		}
 	stCase104:
@@ -3796,7 +3796,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr30
 	st105:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof105
 		}
 	stCase105:
@@ -3808,7 +3808,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr30
 	st106:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof106
 		}
 	stCase106:
@@ -3820,7 +3820,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr30
 	st107:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof107
 		}
 	stCase107:
@@ -3832,7 +3832,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr30
 	st108:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof108
 		}
 	stCase108:
@@ -3844,7 +3844,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr30
 	st109:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof109
 		}
 	stCase109:
@@ -3856,7 +3856,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr30
 	st110:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof110
 		}
 	stCase110:
@@ -3868,7 +3868,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr30
 	st111:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof111
 		}
 	stCase111:
@@ -3880,7 +3880,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr30
 	st112:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof112
 		}
 	stCase112:
@@ -3892,7 +3892,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr30
 	st113:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof113
 		}
 	stCase113:
@@ -3904,7 +3904,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr30
 	st114:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof114
 		}
 	stCase114:
@@ -3916,7 +3916,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr30
 	st115:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof115
 		}
 	stCase115:
@@ -3928,7 +3928,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr30
 	st116:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof116
 		}
 	stCase116:
@@ -3940,7 +3940,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr30
 	st117:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof117
 		}
 	stCase117:
@@ -3952,7 +3952,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr30
 	st118:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof118
 		}
 	stCase118:
@@ -3964,7 +3964,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr30
 	st119:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof119
 		}
 	stCase119:
@@ -3976,7 +3976,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr30
 	st120:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof120
 		}
 	stCase120:
@@ -3988,7 +3988,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr30
 	st121:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof121
 		}
 	stCase121:
@@ -4000,7 +4000,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr30
 	st122:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof122
 		}
 	stCase122:
@@ -4012,7 +4012,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr30
 	st123:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof123
 		}
 	stCase123:
@@ -4024,7 +4024,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr30
 	st124:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof124
 		}
 	stCase124:
@@ -4036,7 +4036,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr30
 	st125:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof125
 		}
 	stCase125:
@@ -4045,7 +4045,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr30
 	st126:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof126
 		}
 	stCase126:
@@ -4057,7 +4057,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st127:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof127
 		}
 	stCase127:
@@ -4069,7 +4069,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st128:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof128
 		}
 	stCase128:
@@ -4081,7 +4081,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st129:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof129
 		}
 	stCase129:
@@ -4093,7 +4093,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st130:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof130
 		}
 	stCase130:
@@ -4105,7 +4105,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st131:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof131
 		}
 	stCase131:
@@ -4117,7 +4117,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st132:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof132
 		}
 	stCase132:
@@ -4129,7 +4129,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st133:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof133
 		}
 	stCase133:
@@ -4141,7 +4141,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st134:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof134
 		}
 	stCase134:
@@ -4153,7 +4153,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st135:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof135
 		}
 	stCase135:
@@ -4165,7 +4165,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st136:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof136
 		}
 	stCase136:
@@ -4177,7 +4177,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st137:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof137
 		}
 	stCase137:
@@ -4189,7 +4189,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st138:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof138
 		}
 	stCase138:
@@ -4201,7 +4201,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st139:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof139
 		}
 	stCase139:
@@ -4213,7 +4213,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st140:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof140
 		}
 	stCase140:
@@ -4225,7 +4225,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st141:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof141
 		}
 	stCase141:
@@ -4237,7 +4237,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st142:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof142
 		}
 	stCase142:
@@ -4249,7 +4249,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st143:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof143
 		}
 	stCase143:
@@ -4261,7 +4261,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st144:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof144
 		}
 	stCase144:
@@ -4273,7 +4273,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st145:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof145
 		}
 	stCase145:
@@ -4285,7 +4285,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st146:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof146
 		}
 	stCase146:
@@ -4297,7 +4297,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st147:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof147
 		}
 	stCase147:
@@ -4309,7 +4309,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st148:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof148
 		}
 	stCase148:
@@ -4321,7 +4321,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st149:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof149
 		}
 	stCase149:
@@ -4333,7 +4333,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st150:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof150
 		}
 	stCase150:
@@ -4345,7 +4345,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st151:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof151
 		}
 	stCase151:
@@ -4357,7 +4357,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st152:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof152
 		}
 	stCase152:
@@ -4369,7 +4369,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st153:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof153
 		}
 	stCase153:
@@ -4381,7 +4381,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st154:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof154
 		}
 	stCase154:
@@ -4393,7 +4393,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st155:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof155
 		}
 	stCase155:
@@ -4405,7 +4405,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st156:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof156
 		}
 	stCase156:
@@ -4417,7 +4417,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st157:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof157
 		}
 	stCase157:
@@ -4429,7 +4429,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st158:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof158
 		}
 	stCase158:
@@ -4441,7 +4441,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st159:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof159
 		}
 	stCase159:
@@ -4453,7 +4453,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st160:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof160
 		}
 	stCase160:
@@ -4465,7 +4465,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st161:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof161
 		}
 	stCase161:
@@ -4477,7 +4477,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st162:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof162
 		}
 	stCase162:
@@ -4489,7 +4489,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st163:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof163
 		}
 	stCase163:
@@ -4501,7 +4501,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st164:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof164
 		}
 	stCase164:
@@ -4513,7 +4513,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st165:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof165
 		}
 	stCase165:
@@ -4525,7 +4525,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st166:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof166
 		}
 	stCase166:
@@ -4537,7 +4537,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st167:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof167
 		}
 	stCase167:
@@ -4549,7 +4549,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st168:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof168
 		}
 	stCase168:
@@ -4561,7 +4561,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st169:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof169
 		}
 	stCase169:
@@ -4573,7 +4573,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st170:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof170
 		}
 	stCase170:
@@ -4585,7 +4585,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st171:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof171
 		}
 	stCase171:
@@ -4597,7 +4597,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st172:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof172
 		}
 	stCase172:
@@ -4609,7 +4609,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st173:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof173
 		}
 	stCase173:
@@ -4621,7 +4621,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st174:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof174
 		}
 	stCase174:
@@ -4633,7 +4633,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st175:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof175
 		}
 	stCase175:
@@ -4645,7 +4645,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st176:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof176
 		}
 	stCase176:
@@ -4657,7 +4657,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st177:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof177
 		}
 	stCase177:
@@ -4669,7 +4669,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st178:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof178
 		}
 	stCase178:
@@ -4681,7 +4681,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st179:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof179
 		}
 	stCase179:
@@ -4693,7 +4693,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st180:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof180
 		}
 	stCase180:
@@ -4705,7 +4705,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st181:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof181
 		}
 	stCase181:
@@ -4717,7 +4717,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st182:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof182
 		}
 	stCase182:
@@ -4729,7 +4729,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st183:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof183
 		}
 	stCase183:
@@ -4741,7 +4741,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st184:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof184
 		}
 	stCase184:
@@ -4753,7 +4753,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st185:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof185
 		}
 	stCase185:
@@ -4765,7 +4765,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st186:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof186
 		}
 	stCase186:
@@ -4777,7 +4777,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st187:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof187
 		}
 	stCase187:
@@ -4789,7 +4789,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st188:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof188
 		}
 	stCase188:
@@ -4801,7 +4801,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st189:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof189
 		}
 	stCase189:
@@ -4813,7 +4813,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st190:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof190
 		}
 	stCase190:
@@ -4825,7 +4825,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st191:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof191
 		}
 	stCase191:
@@ -4837,7 +4837,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st192:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof192
 		}
 	stCase192:
@@ -4849,7 +4849,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st193:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof193
 		}
 	stCase193:
@@ -4861,7 +4861,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st194:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof194
 		}
 	stCase194:
@@ -4873,7 +4873,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st195:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof195
 		}
 	stCase195:
@@ -4885,7 +4885,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st196:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof196
 		}
 	stCase196:
@@ -4897,7 +4897,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st197:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof197
 		}
 	stCase197:
@@ -4909,7 +4909,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st198:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof198
 		}
 	stCase198:
@@ -4921,7 +4921,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st199:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof199
 		}
 	stCase199:
@@ -4933,7 +4933,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st200:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof200
 		}
 	stCase200:
@@ -4945,7 +4945,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st201:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof201
 		}
 	stCase201:
@@ -4957,7 +4957,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st202:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof202
 		}
 	stCase202:
@@ -4969,7 +4969,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st203:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof203
 		}
 	stCase203:
@@ -4981,7 +4981,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st204:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof204
 		}
 	stCase204:
@@ -4993,7 +4993,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st205:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof205
 		}
 	stCase205:
@@ -5005,7 +5005,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st206:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof206
 		}
 	stCase206:
@@ -5017,7 +5017,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st207:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof207
 		}
 	stCase207:
@@ -5029,7 +5029,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st208:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof208
 		}
 	stCase208:
@@ -5041,7 +5041,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st209:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof209
 		}
 	stCase209:
@@ -5053,7 +5053,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st210:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof210
 		}
 	stCase210:
@@ -5065,7 +5065,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st211:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof211
 		}
 	stCase211:
@@ -5077,7 +5077,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st212:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof212
 		}
 	stCase212:
@@ -5089,7 +5089,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st213:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof213
 		}
 	stCase213:
@@ -5101,7 +5101,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st214:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof214
 		}
 	stCase214:
@@ -5113,7 +5113,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st215:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof215
 		}
 	stCase215:
@@ -5125,7 +5125,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st216:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof216
 		}
 	stCase216:
@@ -5137,7 +5137,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st217:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof217
 		}
 	stCase217:
@@ -5149,7 +5149,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st218:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof218
 		}
 	stCase218:
@@ -5161,7 +5161,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st219:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof219
 		}
 	stCase219:
@@ -5173,7 +5173,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st220:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof220
 		}
 	stCase220:
@@ -5185,7 +5185,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st221:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof221
 		}
 	stCase221:
@@ -5197,7 +5197,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st222:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof222
 		}
 	stCase222:
@@ -5209,7 +5209,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st223:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof223
 		}
 	stCase223:
@@ -5221,7 +5221,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st224:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof224
 		}
 	stCase224:
@@ -5233,7 +5233,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st225:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof225
 		}
 	stCase225:
@@ -5245,7 +5245,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st226:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof226
 		}
 	stCase226:
@@ -5257,7 +5257,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st227:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof227
 		}
 	stCase227:
@@ -5269,7 +5269,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st228:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof228
 		}
 	stCase228:
@@ -5281,7 +5281,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st229:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof229
 		}
 	stCase229:
@@ -5293,7 +5293,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st230:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof230
 		}
 	stCase230:
@@ -5305,7 +5305,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st231:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof231
 		}
 	stCase231:
@@ -5317,7 +5317,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st232:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof232
 		}
 	stCase232:
@@ -5329,7 +5329,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st233:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof233
 		}
 	stCase233:
@@ -5341,7 +5341,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st234:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof234
 		}
 	stCase234:
@@ -5353,7 +5353,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st235:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof235
 		}
 	stCase235:
@@ -5365,7 +5365,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st236:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof236
 		}
 	stCase236:
@@ -5377,7 +5377,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st237:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof237
 		}
 	stCase237:
@@ -5389,7 +5389,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st238:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof238
 		}
 	stCase238:
@@ -5401,7 +5401,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st239:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof239
 		}
 	stCase239:
@@ -5413,7 +5413,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st240:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof240
 		}
 	stCase240:
@@ -5425,7 +5425,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st241:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof241
 		}
 	stCase241:
@@ -5437,7 +5437,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st242:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof242
 		}
 	stCase242:
@@ -5449,7 +5449,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st243:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof243
 		}
 	stCase243:
@@ -5461,7 +5461,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st244:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof244
 		}
 	stCase244:
@@ -5473,7 +5473,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st245:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof245
 		}
 	stCase245:
@@ -5485,7 +5485,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st246:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof246
 		}
 	stCase246:
@@ -5497,7 +5497,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st247:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof247
 		}
 	stCase247:
@@ -5509,7 +5509,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st248:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof248
 		}
 	stCase248:
@@ -5521,7 +5521,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st249:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof249
 		}
 	stCase249:
@@ -5533,7 +5533,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st250:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof250
 		}
 	stCase250:
@@ -5545,7 +5545,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st251:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof251
 		}
 	stCase251:
@@ -5557,7 +5557,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st252:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof252
 		}
 	stCase252:
@@ -5566,7 +5566,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr24
 	st253:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof253
 		}
 	stCase253:
@@ -5578,7 +5578,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st254:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof254
 		}
 	stCase254:
@@ -5590,7 +5590,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st255:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof255
 		}
 	stCase255:
@@ -5602,7 +5602,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st256:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof256
 		}
 	stCase256:
@@ -5614,7 +5614,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st257:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof257
 		}
 	stCase257:
@@ -5626,7 +5626,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st258:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof258
 		}
 	stCase258:
@@ -5638,7 +5638,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st259:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof259
 		}
 	stCase259:
@@ -5650,7 +5650,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st260:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof260
 		}
 	stCase260:
@@ -5662,7 +5662,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st261:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof261
 		}
 	stCase261:
@@ -5674,7 +5674,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st262:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof262
 		}
 	stCase262:
@@ -5686,7 +5686,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st263:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof263
 		}
 	stCase263:
@@ -5698,7 +5698,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st264:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof264
 		}
 	stCase264:
@@ -5710,7 +5710,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st265:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof265
 		}
 	stCase265:
@@ -5722,7 +5722,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st266:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof266
 		}
 	stCase266:
@@ -5734,7 +5734,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st267:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof267
 		}
 	stCase267:
@@ -5746,7 +5746,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st268:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof268
 		}
 	stCase268:
@@ -5758,7 +5758,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st269:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof269
 		}
 	stCase269:
@@ -5770,7 +5770,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st270:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof270
 		}
 	stCase270:
@@ -5782,7 +5782,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st271:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof271
 		}
 	stCase271:
@@ -5794,7 +5794,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st272:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof272
 		}
 	stCase272:
@@ -5806,7 +5806,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st273:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof273
 		}
 	stCase273:
@@ -5818,7 +5818,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st274:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof274
 		}
 	stCase274:
@@ -5830,7 +5830,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st275:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof275
 		}
 	stCase275:
@@ -5842,7 +5842,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st276:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof276
 		}
 	stCase276:
@@ -5854,7 +5854,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st277:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof277
 		}
 	stCase277:
@@ -5866,7 +5866,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st278:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof278
 		}
 	stCase278:
@@ -5878,7 +5878,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st279:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof279
 		}
 	stCase279:
@@ -5890,7 +5890,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st280:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof280
 		}
 	stCase280:
@@ -5902,7 +5902,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st281:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof281
 		}
 	stCase281:
@@ -5914,7 +5914,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st282:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof282
 		}
 	stCase282:
@@ -5926,7 +5926,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st283:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof283
 		}
 	stCase283:
@@ -5938,7 +5938,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st284:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof284
 		}
 	stCase284:
@@ -5950,7 +5950,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st285:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof285
 		}
 	stCase285:
@@ -5962,7 +5962,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st286:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof286
 		}
 	stCase286:
@@ -5974,7 +5974,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st287:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof287
 		}
 	stCase287:
@@ -5986,7 +5986,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st288:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof288
 		}
 	stCase288:
@@ -5998,7 +5998,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st289:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof289
 		}
 	stCase289:
@@ -6010,7 +6010,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st290:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof290
 		}
 	stCase290:
@@ -6022,7 +6022,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st291:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof291
 		}
 	stCase291:
@@ -6034,7 +6034,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st292:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof292
 		}
 	stCase292:
@@ -6046,7 +6046,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st293:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof293
 		}
 	stCase293:
@@ -6058,7 +6058,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st294:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof294
 		}
 	stCase294:
@@ -6070,7 +6070,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st295:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof295
 		}
 	stCase295:
@@ -6082,7 +6082,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st296:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof296
 		}
 	stCase296:
@@ -6094,7 +6094,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st297:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof297
 		}
 	stCase297:
@@ -6106,7 +6106,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st298:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof298
 		}
 	stCase298:
@@ -6118,7 +6118,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st299:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof299
 		}
 	stCase299:
@@ -6127,7 +6127,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr20
 	st300:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof300
 		}
 	stCase300:
@@ -6139,7 +6139,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st301:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof301
 		}
 	stCase301:
@@ -6151,7 +6151,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st302:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof302
 		}
 	stCase302:
@@ -6163,7 +6163,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st303:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof303
 		}
 	stCase303:
@@ -6175,7 +6175,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st304:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof304
 		}
 	stCase304:
@@ -6187,7 +6187,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st305:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof305
 		}
 	stCase305:
@@ -6199,7 +6199,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st306:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof306
 		}
 	stCase306:
@@ -6211,7 +6211,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st307:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof307
 		}
 	stCase307:
@@ -6223,7 +6223,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st308:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof308
 		}
 	stCase308:
@@ -6235,7 +6235,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st309:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof309
 		}
 	stCase309:
@@ -6247,7 +6247,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st310:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof310
 		}
 	stCase310:
@@ -6259,7 +6259,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st311:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof311
 		}
 	stCase311:
@@ -6271,7 +6271,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st312:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof312
 		}
 	stCase312:
@@ -6283,7 +6283,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st313:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof313
 		}
 	stCase313:
@@ -6295,7 +6295,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st314:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof314
 		}
 	stCase314:
@@ -6307,7 +6307,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st315:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof315
 		}
 	stCase315:
@@ -6319,7 +6319,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st316:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof316
 		}
 	stCase316:
@@ -6331,7 +6331,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st317:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof317
 		}
 	stCase317:
@@ -6343,7 +6343,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st318:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof318
 		}
 	stCase318:
@@ -6355,7 +6355,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st319:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof319
 		}
 	stCase319:
@@ -6367,7 +6367,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st320:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof320
 		}
 	stCase320:
@@ -6379,7 +6379,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st321:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof321
 		}
 	stCase321:
@@ -6391,7 +6391,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st322:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof322
 		}
 	stCase322:
@@ -6403,7 +6403,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st323:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof323
 		}
 	stCase323:
@@ -6415,7 +6415,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st324:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof324
 		}
 	stCase324:
@@ -6427,7 +6427,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st325:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof325
 		}
 	stCase325:
@@ -6439,7 +6439,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st326:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof326
 		}
 	stCase326:
@@ -6451,7 +6451,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st327:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof327
 		}
 	stCase327:
@@ -6463,7 +6463,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st328:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof328
 		}
 	stCase328:
@@ -6475,7 +6475,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st329:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof329
 		}
 	stCase329:
@@ -6487,7 +6487,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st330:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof330
 		}
 	stCase330:
@@ -6499,7 +6499,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st331:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof331
 		}
 	stCase331:
@@ -6511,7 +6511,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st332:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof332
 		}
 	stCase332:
@@ -6523,7 +6523,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st333:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof333
 		}
 	stCase333:
@@ -6535,7 +6535,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st334:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof334
 		}
 	stCase334:
@@ -6547,7 +6547,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st335:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof335
 		}
 	stCase335:
@@ -6559,7 +6559,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st336:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof336
 		}
 	stCase336:
@@ -6571,7 +6571,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st337:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof337
 		}
 	stCase337:
@@ -6583,7 +6583,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st338:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof338
 		}
 	stCase338:
@@ -6595,7 +6595,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st339:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof339
 		}
 	stCase339:
@@ -6607,7 +6607,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st340:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof340
 		}
 	stCase340:
@@ -6619,7 +6619,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st341:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof341
 		}
 	stCase341:
@@ -6631,7 +6631,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st342:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof342
 		}
 	stCase342:
@@ -6643,7 +6643,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st343:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof343
 		}
 	stCase343:
@@ -6655,7 +6655,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st344:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof344
 		}
 	stCase344:
@@ -6667,7 +6667,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st345:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof345
 		}
 	stCase345:
@@ -6679,7 +6679,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st346:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof346
 		}
 	stCase346:
@@ -6691,7 +6691,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st347:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof347
 		}
 	stCase347:
@@ -6703,7 +6703,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st348:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof348
 		}
 	stCase348:
@@ -6715,7 +6715,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st349:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof349
 		}
 	stCase349:
@@ -6727,7 +6727,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st350:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof350
 		}
 	stCase350:
@@ -6739,7 +6739,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st351:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof351
 		}
 	stCase351:
@@ -6751,7 +6751,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st352:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof352
 		}
 	stCase352:
@@ -6763,7 +6763,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st353:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof353
 		}
 	stCase353:
@@ -6775,7 +6775,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st354:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof354
 		}
 	stCase354:
@@ -6787,7 +6787,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st355:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof355
 		}
 	stCase355:
@@ -6799,7 +6799,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st356:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof356
 		}
 	stCase356:
@@ -6811,7 +6811,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st357:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof357
 		}
 	stCase357:
@@ -6823,7 +6823,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st358:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof358
 		}
 	stCase358:
@@ -6835,7 +6835,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st359:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof359
 		}
 	stCase359:
@@ -6847,7 +6847,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st360:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof360
 		}
 	stCase360:
@@ -6859,7 +6859,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st361:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof361
 		}
 	stCase361:
@@ -6871,7 +6871,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st362:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof362
 		}
 	stCase362:
@@ -6883,7 +6883,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st363:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof363
 		}
 	stCase363:
@@ -6895,7 +6895,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st364:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof364
 		}
 	stCase364:
@@ -6907,7 +6907,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st365:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof365
 		}
 	stCase365:
@@ -6919,7 +6919,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st366:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof366
 		}
 	stCase366:
@@ -6931,7 +6931,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st367:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof367
 		}
 	stCase367:
@@ -6943,7 +6943,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st368:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof368
 		}
 	stCase368:
@@ -6955,7 +6955,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st369:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof369
 		}
 	stCase369:
@@ -6967,7 +6967,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st370:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof370
 		}
 	stCase370:
@@ -6979,7 +6979,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st371:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof371
 		}
 	stCase371:
@@ -6991,7 +6991,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st372:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof372
 		}
 	stCase372:
@@ -7003,7 +7003,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st373:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof373
 		}
 	stCase373:
@@ -7015,7 +7015,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st374:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof374
 		}
 	stCase374:
@@ -7027,7 +7027,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st375:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof375
 		}
 	stCase375:
@@ -7039,7 +7039,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st376:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof376
 		}
 	stCase376:
@@ -7051,7 +7051,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st377:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof377
 		}
 	stCase377:
@@ -7063,7 +7063,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st378:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof378
 		}
 	stCase378:
@@ -7075,7 +7075,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st379:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof379
 		}
 	stCase379:
@@ -7087,7 +7087,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st380:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof380
 		}
 	stCase380:
@@ -7099,7 +7099,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st381:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof381
 		}
 	stCase381:
@@ -7111,7 +7111,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st382:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof382
 		}
 	stCase382:
@@ -7123,7 +7123,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st383:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof383
 		}
 	stCase383:
@@ -7135,7 +7135,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st384:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof384
 		}
 	stCase384:
@@ -7147,7 +7147,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st385:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof385
 		}
 	stCase385:
@@ -7159,7 +7159,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st386:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof386
 		}
 	stCase386:
@@ -7171,7 +7171,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st387:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof387
 		}
 	stCase387:
@@ -7183,7 +7183,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st388:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof388
 		}
 	stCase388:
@@ -7195,7 +7195,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st389:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof389
 		}
 	stCase389:
@@ -7207,7 +7207,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st390:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof390
 		}
 	stCase390:
@@ -7219,7 +7219,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st391:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof391
 		}
 	stCase391:
@@ -7231,7 +7231,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st392:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof392
 		}
 	stCase392:
@@ -7243,7 +7243,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st393:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof393
 		}
 	stCase393:
@@ -7255,7 +7255,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st394:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof394
 		}
 	stCase394:
@@ -7267,7 +7267,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st395:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof395
 		}
 	stCase395:
@@ -7279,7 +7279,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st396:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof396
 		}
 	stCase396:
@@ -7291,7 +7291,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st397:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof397
 		}
 	stCase397:
@@ -7303,7 +7303,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st398:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof398
 		}
 	stCase398:
@@ -7315,7 +7315,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st399:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof399
 		}
 	stCase399:
@@ -7327,7 +7327,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st400:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof400
 		}
 	stCase400:
@@ -7339,7 +7339,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st401:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof401
 		}
 	stCase401:
@@ -7351,7 +7351,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st402:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof402
 		}
 	stCase402:
@@ -7363,7 +7363,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st403:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof403
 		}
 	stCase403:
@@ -7375,7 +7375,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st404:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof404
 		}
 	stCase404:
@@ -7387,7 +7387,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st405:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof405
 		}
 	stCase405:
@@ -7399,7 +7399,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st406:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof406
 		}
 	stCase406:
@@ -7411,7 +7411,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st407:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof407
 		}
 	stCase407:
@@ -7423,7 +7423,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st408:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof408
 		}
 	stCase408:
@@ -7435,7 +7435,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st409:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof409
 		}
 	stCase409:
@@ -7447,7 +7447,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st410:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof410
 		}
 	stCase410:
@@ -7459,7 +7459,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st411:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof411
 		}
 	stCase411:
@@ -7471,7 +7471,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st412:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof412
 		}
 	stCase412:
@@ -7483,7 +7483,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st413:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof413
 		}
 	stCase413:
@@ -7495,7 +7495,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st414:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof414
 		}
 	stCase414:
@@ -7507,7 +7507,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st415:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof415
 		}
 	stCase415:
@@ -7519,7 +7519,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st416:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof416
 		}
 	stCase416:
@@ -7531,7 +7531,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st417:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof417
 		}
 	stCase417:
@@ -7543,7 +7543,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st418:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof418
 		}
 	stCase418:
@@ -7555,7 +7555,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st419:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof419
 		}
 	stCase419:
@@ -7567,7 +7567,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st420:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof420
 		}
 	stCase420:
@@ -7579,7 +7579,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st421:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof421
 		}
 	stCase421:
@@ -7591,7 +7591,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st422:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof422
 		}
 	stCase422:
@@ -7603,7 +7603,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st423:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof423
 		}
 	stCase423:
@@ -7615,7 +7615,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st424:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof424
 		}
 	stCase424:
@@ -7627,7 +7627,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st425:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof425
 		}
 	stCase425:
@@ -7639,7 +7639,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st426:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof426
 		}
 	stCase426:
@@ -7651,7 +7651,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st427:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof427
 		}
 	stCase427:
@@ -7663,7 +7663,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st428:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof428
 		}
 	stCase428:
@@ -7675,7 +7675,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st429:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof429
 		}
 	stCase429:
@@ -7687,7 +7687,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st430:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof430
 		}
 	stCase430:
@@ -7699,7 +7699,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st431:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof431
 		}
 	stCase431:
@@ -7711,7 +7711,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st432:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof432
 		}
 	stCase432:
@@ -7723,7 +7723,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st433:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof433
 		}
 	stCase433:
@@ -7735,7 +7735,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st434:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof434
 		}
 	stCase434:
@@ -7747,7 +7747,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st435:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof435
 		}
 	stCase435:
@@ -7759,7 +7759,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st436:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof436
 		}
 	stCase436:
@@ -7771,7 +7771,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st437:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof437
 		}
 	stCase437:
@@ -7783,7 +7783,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st438:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof438
 		}
 	stCase438:
@@ -7795,7 +7795,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st439:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof439
 		}
 	stCase439:
@@ -7807,7 +7807,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st440:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof440
 		}
 	stCase440:
@@ -7819,7 +7819,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st441:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof441
 		}
 	stCase441:
@@ -7831,7 +7831,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st442:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof442
 		}
 	stCase442:
@@ -7843,7 +7843,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st443:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof443
 		}
 	stCase443:
@@ -7855,7 +7855,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st444:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof444
 		}
 	stCase444:
@@ -7867,7 +7867,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st445:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof445
 		}
 	stCase445:
@@ -7879,7 +7879,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st446:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof446
 		}
 	stCase446:
@@ -7891,7 +7891,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st447:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof447
 		}
 	stCase447:
@@ -7903,7 +7903,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st448:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof448
 		}
 	stCase448:
@@ -7915,7 +7915,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st449:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof449
 		}
 	stCase449:
@@ -7927,7 +7927,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st450:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof450
 		}
 	stCase450:
@@ -7939,7 +7939,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st451:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof451
 		}
 	stCase451:
@@ -7951,7 +7951,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st452:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof452
 		}
 	stCase452:
@@ -7963,7 +7963,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st453:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof453
 		}
 	stCase453:
@@ -7975,7 +7975,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st454:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof454
 		}
 	stCase454:
@@ -7987,7 +7987,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st455:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof455
 		}
 	stCase455:
@@ -7999,7 +7999,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st456:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof456
 		}
 	stCase456:
@@ -8011,7 +8011,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st457:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof457
 		}
 	stCase457:
@@ -8023,7 +8023,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st458:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof458
 		}
 	stCase458:
@@ -8035,7 +8035,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st459:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof459
 		}
 	stCase459:
@@ -8047,7 +8047,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st460:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof460
 		}
 	stCase460:
@@ -8059,7 +8059,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st461:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof461
 		}
 	stCase461:
@@ -8071,7 +8071,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st462:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof462
 		}
 	stCase462:
@@ -8083,7 +8083,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st463:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof463
 		}
 	stCase463:
@@ -8095,7 +8095,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st464:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof464
 		}
 	stCase464:
@@ -8107,7 +8107,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st465:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof465
 		}
 	stCase465:
@@ -8119,7 +8119,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st466:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof466
 		}
 	stCase466:
@@ -8131,7 +8131,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st467:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof467
 		}
 	stCase467:
@@ -8143,7 +8143,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st468:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof468
 		}
 	stCase468:
@@ -8155,7 +8155,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st469:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof469
 		}
 	stCase469:
@@ -8167,7 +8167,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st470:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof470
 		}
 	stCase470:
@@ -8179,7 +8179,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st471:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof471
 		}
 	stCase471:
@@ -8191,7 +8191,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st472:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof472
 		}
 	stCase472:
@@ -8203,7 +8203,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st473:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof473
 		}
 	stCase473:
@@ -8215,7 +8215,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st474:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof474
 		}
 	stCase474:
@@ -8227,7 +8227,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st475:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof475
 		}
 	stCase475:
@@ -8239,7 +8239,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st476:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof476
 		}
 	stCase476:
@@ -8251,7 +8251,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st477:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof477
 		}
 	stCase477:
@@ -8263,7 +8263,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st478:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof478
 		}
 	stCase478:
@@ -8275,7 +8275,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st479:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof479
 		}
 	stCase479:
@@ -8287,7 +8287,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st480:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof480
 		}
 	stCase480:
@@ -8299,7 +8299,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st481:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof481
 		}
 	stCase481:
@@ -8311,7 +8311,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st482:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof482
 		}
 	stCase482:
@@ -8323,7 +8323,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st483:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof483
 		}
 	stCase483:
@@ -8335,7 +8335,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st484:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof484
 		}
 	stCase484:
@@ -8347,7 +8347,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st485:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof485
 		}
 	stCase485:
@@ -8359,7 +8359,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st486:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof486
 		}
 	stCase486:
@@ -8371,7 +8371,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st487:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof487
 		}
 	stCase487:
@@ -8383,7 +8383,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st488:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof488
 		}
 	stCase488:
@@ -8395,7 +8395,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st489:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof489
 		}
 	stCase489:
@@ -8407,7 +8407,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st490:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof490
 		}
 	stCase490:
@@ -8419,7 +8419,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st491:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof491
 		}
 	stCase491:
@@ -8431,7 +8431,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st492:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof492
 		}
 	stCase492:
@@ -8443,7 +8443,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st493:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof493
 		}
 	stCase493:
@@ -8455,7 +8455,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st494:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof494
 		}
 	stCase494:
@@ -8467,7 +8467,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st495:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof495
 		}
 	stCase495:
@@ -8479,7 +8479,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st496:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof496
 		}
 	stCase496:
@@ -8491,7 +8491,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st497:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof497
 		}
 	stCase497:
@@ -8503,7 +8503,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st498:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof498
 		}
 	stCase498:
@@ -8515,7 +8515,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st499:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof499
 		}
 	stCase499:
@@ -8527,7 +8527,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st500:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof500
 		}
 	stCase500:
@@ -8539,7 +8539,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st501:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof501
 		}
 	stCase501:
@@ -8551,7 +8551,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st502:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof502
 		}
 	stCase502:
@@ -8563,7 +8563,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st503:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof503
 		}
 	stCase503:
@@ -8575,7 +8575,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st504:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof504
 		}
 	stCase504:
@@ -8587,7 +8587,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st505:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof505
 		}
 	stCase505:
@@ -8599,7 +8599,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st506:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof506
 		}
 	stCase506:
@@ -8611,7 +8611,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st507:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof507
 		}
 	stCase507:
@@ -8623,7 +8623,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st508:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof508
 		}
 	stCase508:
@@ -8635,7 +8635,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st509:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof509
 		}
 	stCase509:
@@ -8647,7 +8647,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st510:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof510
 		}
 	stCase510:
@@ -8659,7 +8659,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st511:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof511
 		}
 	stCase511:
@@ -8671,7 +8671,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st512:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof512
 		}
 	stCase512:
@@ -8683,7 +8683,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st513:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof513
 		}
 	stCase513:
@@ -8695,7 +8695,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st514:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof514
 		}
 	stCase514:
@@ -8707,7 +8707,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st515:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof515
 		}
 	stCase515:
@@ -8719,7 +8719,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st516:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof516
 		}
 	stCase516:
@@ -8731,7 +8731,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st517:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof517
 		}
 	stCase517:
@@ -8743,7 +8743,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st518:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof518
 		}
 	stCase518:
@@ -8755,7 +8755,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st519:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof519
 		}
 	stCase519:
@@ -8767,7 +8767,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st520:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof520
 		}
 	stCase520:
@@ -8779,7 +8779,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st521:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof521
 		}
 	stCase521:
@@ -8791,7 +8791,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st522:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof522
 		}
 	stCase522:
@@ -8803,7 +8803,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st523:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof523
 		}
 	stCase523:
@@ -8815,7 +8815,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st524:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof524
 		}
 	stCase524:
@@ -8827,7 +8827,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st525:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof525
 		}
 	stCase525:
@@ -8839,7 +8839,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st526:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof526
 		}
 	stCase526:
@@ -8851,7 +8851,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st527:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof527
 		}
 	stCase527:
@@ -8863,7 +8863,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st528:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof528
 		}
 	stCase528:
@@ -8875,7 +8875,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st529:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof529
 		}
 	stCase529:
@@ -8887,7 +8887,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st530:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof530
 		}
 	stCase530:
@@ -8899,7 +8899,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st531:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof531
 		}
 	stCase531:
@@ -8911,7 +8911,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st532:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof532
 		}
 	stCase532:
@@ -8923,7 +8923,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st533:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof533
 		}
 	stCase533:
@@ -8935,7 +8935,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st534:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof534
 		}
 	stCase534:
@@ -8947,7 +8947,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st535:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof535
 		}
 	stCase535:
@@ -8959,7 +8959,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st536:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof536
 		}
 	stCase536:
@@ -8971,7 +8971,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st537:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof537
 		}
 	stCase537:
@@ -8983,7 +8983,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st538:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof538
 		}
 	stCase538:
@@ -8995,7 +8995,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st539:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof539
 		}
 	stCase539:
@@ -9007,7 +9007,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st540:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof540
 		}
 	stCase540:
@@ -9019,7 +9019,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st541:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof541
 		}
 	stCase541:
@@ -9031,7 +9031,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st542:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof542
 		}
 	stCase542:
@@ -9043,7 +9043,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st543:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof543
 		}
 	stCase543:
@@ -9055,7 +9055,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st544:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof544
 		}
 	stCase544:
@@ -9067,7 +9067,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st545:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof545
 		}
 	stCase545:
@@ -9079,7 +9079,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st546:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof546
 		}
 	stCase546:
@@ -9091,7 +9091,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st547:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof547
 		}
 	stCase547:
@@ -9103,7 +9103,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st548:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof548
 		}
 	stCase548:
@@ -9115,7 +9115,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st549:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof549
 		}
 	stCase549:
@@ -9127,7 +9127,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st550:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof550
 		}
 	stCase550:
@@ -9139,7 +9139,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st551:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof551
 		}
 	stCase551:
@@ -9151,7 +9151,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st552:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof552
 		}
 	stCase552:
@@ -9163,7 +9163,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr16
 	st553:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof553
 		}
 	stCase553:
@@ -9177,7 +9177,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st554
 	st554:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof554
 		}
 	stCase554:
@@ -9186,7 +9186,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st555:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof555
 		}
 	stCase555:
@@ -9195,7 +9195,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st556:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof556
 		}
 	stCase556:
@@ -9204,7 +9204,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st557:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof557
 		}
 	stCase557:
@@ -9213,7 +9213,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st558:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof558
 		}
 	stCase558:
@@ -9225,7 +9225,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st559:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof559
 		}
 	stCase559:
@@ -9234,7 +9234,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st560:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof560
 		}
 	stCase560:
@@ -9243,7 +9243,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st561:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof561
 		}
 	stCase561:
@@ -9258,7 +9258,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st562:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof562
 		}
 	stCase562:
@@ -9267,7 +9267,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st563:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof563
 		}
 	stCase563:
@@ -9276,7 +9276,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st564:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof564
 		}
 	stCase564:
@@ -9288,7 +9288,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st565:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof565
 		}
 	stCase565:
@@ -9297,7 +9297,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st566:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof566
 		}
 	stCase566:
@@ -9306,7 +9306,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st567:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof567
 		}
 	stCase567:
@@ -9315,7 +9315,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st568:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof568
 		}
 	stCase568:
@@ -9324,7 +9324,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st569:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof569
 		}
 	stCase569:
@@ -9333,7 +9333,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st570:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof570
 		}
 	stCase570:
@@ -9342,7 +9342,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st571:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof571
 		}
 	stCase571:
@@ -9351,7 +9351,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st572:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof572
 		}
 	stCase572:
@@ -9367,7 +9367,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st573:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof573
 		}
 	stCase573:
@@ -9379,7 +9379,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st574:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof574
 		}
 	stCase574:
@@ -9388,7 +9388,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st575:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof575
 		}
 	stCase575:
@@ -9397,7 +9397,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st576:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof576
 		}
 	stCase576:
@@ -9406,7 +9406,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st577:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof577
 		}
 	stCase577:
@@ -9415,7 +9415,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st578:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof578
 		}
 	stCase578:
@@ -9424,7 +9424,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr615
 	st579:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof579
 		}
 	stCase579:
@@ -9433,7 +9433,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st580:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof580
 		}
 	stCase580:
@@ -9442,7 +9442,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st581:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof581
 		}
 	stCase581:
@@ -9459,7 +9459,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st582:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof582
 		}
 	stCase582:
@@ -9476,7 +9476,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st583:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof583
 		}
 	stCase583:
@@ -9493,7 +9493,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st584:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof584
 		}
 	stCase584:
@@ -9510,7 +9510,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st585:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof585
 		}
 	stCase585:
@@ -9527,7 +9527,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st586:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof586
 		}
 	stCase586:
@@ -9541,7 +9541,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st587:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof587
 		}
 	stCase587:
@@ -9550,7 +9550,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st588:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof588
 		}
 	stCase588:
@@ -9559,7 +9559,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st589:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof589
 		}
 	stCase589:
@@ -9568,7 +9568,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st590:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof590
 		}
 	stCase590:
@@ -9577,7 +9577,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr12
 	st591:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof591
 		}
 	stCase591:
@@ -9592,7 +9592,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr7
 	st592:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof592
 		}
 	stCase592:
@@ -9609,7 +9609,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st593
 	st593:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof593
 		}
 	stCase593:
@@ -9633,7 +9633,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st594
 	st594:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof594
 		}
 	stCase594:
@@ -9649,7 +9649,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr2
 	st595:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof595
 		}
 	stCase595:
@@ -9665,7 +9665,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr2
 	st607:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof607
 		}
 	stCase607:
@@ -9678,13 +9678,13 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st608
 	st608:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof608
 		}
 	stCase608:
 		goto st608
 	st609:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof609
 		}
 	stCase609:
@@ -9700,7 +9700,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st610
 	st610:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof610
 		}
 	stCase610:
@@ -9713,7 +9713,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 
 		goto st611
 	st611:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof611
 		}
 	stCase611:
@@ -9722,7 +9722,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto st610
 	st612:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof612
 		}
 	stCase612:
@@ -9731,7 +9731,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto st610
 	st613:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof613
 		}
 	stCase613:
@@ -9769,7 +9769,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto st613
 	st596:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof596
 		}
 	stCase596:
@@ -9778,7 +9778,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr627
 	st597:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof597
 		}
 	stCase597:
@@ -9787,7 +9787,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr627
 	st598:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof598
 		}
 	stCase598:
@@ -9796,7 +9796,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr627
 	st599:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof599
 		}
 	stCase599:
@@ -9805,7 +9805,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr627
 	st600:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof600
 		}
 	stCase600:
@@ -9814,7 +9814,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr627
 	st601:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof601
 		}
 	stCase601:
@@ -9823,7 +9823,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr627
 	st602:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof602
 		}
 	stCase602:
@@ -9832,7 +9832,7 @@ func (m *machine) Parse(input []byte) (syslog.Message, error) {
 		}
 		goto tr627
 	st614:
-		if (m.p)++; (m.p) == (m.pe) {
+		if (m.p)++; (m.p) >= (m.pe) {
 			goto _testEof614
 		}
 	stCase614:
